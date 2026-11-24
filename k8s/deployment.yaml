@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: bruno-app
-          image: bruno6725/brunoapp:4a862504665720e920f791e83633d1fc9f1f9d9a
+          image: bruno6725/brunoapp:latest
           ports:
             - containerPort: 8080
