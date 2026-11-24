@@ -2,11 +2,9 @@ FROM maven:3.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src ./src
-RUN mvn clean package -DskipTests && find /app -maxdepth 4 \( -name "*.jar" -o -name "*.war" \) -ls
+RUN mvn clean package -DskipTests
 
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-COPY --from=build /app/target/ /tmp/target/
-RUN ls -la /tmp/target/
+FROM tomcat:9.0-jdk17
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+CMD ["catalina.sh", "run"]
