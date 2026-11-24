@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: bruno-app
-          image: YOUR_DOCKERHUB_USERNAME/brunoapp:latest
+          image: bruno6725/brunoapp:latest
           ports:
             - containerPort: 8080
